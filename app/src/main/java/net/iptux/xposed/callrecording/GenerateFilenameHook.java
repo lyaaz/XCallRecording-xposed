@@ -1,5 +1,6 @@
 package net.iptux.xposed.callrecording;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
@@ -10,7 +11,7 @@ import java.io.File;
 
 class GenerateFilenameHook extends MethodHook {
 	@Override
-	protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+	protected void afterHookedMethod(MethodHookParam param) {
 		String result = (String) param.getResult();
 		String trim = result.trim();
 		Settings settings = getSettings();
@@ -39,19 +40,13 @@ class GenerateFilenameHook extends MethodHook {
 			return null;
 		}
 		Uri lookupUri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(number));
-		Cursor cursor = null;
-		try {
-			cursor = context.getContentResolver().query(lookupUri, new String[] {ContactsContract.PhoneLookup.DISPLAY_NAME}, null, null, null);
+		try (Cursor cursor = context.getContentResolver().query(lookupUri, new String[]{ContactsContract.PhoneLookup.DISPLAY_NAME}, null, null, null)) {
 			if (null == cursor || cursor.getCount() == 0) {
 				return null;
 			}
 			cursor.moveToNext();
-			String name = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
+			@SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex(ContactsContract.PhoneLookup.DISPLAY_NAME));
 			return name;
-		} finally {
-			if (null != cursor) {
-				cursor.close();
-			}
 		}
 	}
 }

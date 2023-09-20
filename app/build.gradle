@@ -1,14 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-	compileSdkVersion 30
-	buildToolsVersion "30.0.3"
+	compileSdk 34
 
 	defaultConfig {
 		applicationId "net.iptux.xposed.callrecording"
-		minSdkVersion 19
+		minSdkVersion 26
+		targetSdk 34
 		/* for Context.MODE_WORLD_READABLE */
-		targetSdkVersion 23
 		versionCode 21
 		versionName "1.0.21"
 	}
@@ -29,11 +28,11 @@ android {
 			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro', 'XposedBridgeApi-rules.pro'
 		}
 	}
-
-	lintOptions {
-		disable 'ExpiredTargetSdkVersion'
-		disable 'MissingTranslation'
+	namespace 'net.iptux.xposed.callrecording'
+	lint {
+		disable 'ExpiredTargetSdkVersion', 'MissingTranslation'
 	}
+
 }
 
 dependencies {

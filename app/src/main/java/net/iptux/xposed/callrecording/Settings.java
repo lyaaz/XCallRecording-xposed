@@ -43,7 +43,7 @@ class Settings {
 	}
 
 	boolean isAACFormat() {
-		return prefs.getBoolean(PREF_AAC_FORMAT, false);
+		return prefs.getBoolean(PREF_AAC_FORMAT, true);
 	}
 
 	boolean isRecordIncoming() {
@@ -58,13 +58,13 @@ class Settings {
 		int delay = 500;
 		try {
 			delay = Integer.parseInt(prefs.getString(PREF_RECORD_DELAY2, "500"));
-		} catch (NumberFormatException ex) {
+		} catch (NumberFormatException ignored) {
 		}
 		return delay;
 	}
 
 	boolean isPrependContactName() {
-		return prefs.getBoolean(PREF_PREPEND_CONTACT_NAME, false);
+		return prefs.getBoolean(PREF_PREPEND_CONTACT_NAME, true);
 	}
 
 	boolean isSeparateFolder() {
