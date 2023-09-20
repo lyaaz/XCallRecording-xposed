@@ -15,7 +15,7 @@ class GenerateFilenameHook extends MethodHook {
 		String result = (String) param.getResult();
 		String trim = result.trim();
 		Settings settings = getSettings();
-		if (settings.isPrependContactName() || settings.isSeparateFolder()) {
+		if (settings.isPrependContactName()) {
 			Context context = (Context) param.thisObject;
 			String number = (String) param.args[0];
 			String name = getContactName(context, number);
@@ -24,12 +24,6 @@ class GenerateFilenameHook extends MethodHook {
 					trim = name + '_' + trim;
 				}
 				number = name;
-			}
-			if (settings.isSeparateFolder()) {
-				File folder = new File(Utility.getRecordingFolder(), number);
-				if (folder.exists() || folder.mkdirs()) {
-					trim = number + File.separator + trim;
-				}
 			}
 		}
 		param.setResult(trim);

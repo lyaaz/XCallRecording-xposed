@@ -7,9 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.preference.SwitchPreference;
 
-public class SettingsActivity extends PreferenceActivity implements
-		Preference.OnPreferenceChangeListener,
-		Preference.OnPreferenceClickListener {
+public class SettingsActivity extends PreferenceActivity{
 
 	static final int REQUEST_STORAGE_PERMISSION = 0x10ae;
 
@@ -20,20 +18,6 @@ public class SettingsActivity extends PreferenceActivity implements
 		super.onCreate(savedInstanceState);
 		getPreferenceManager().setSharedPreferencesMode(MODE_WORLD_READABLE);
 		addPreferencesFromResource(R.xml.preferences);
-
-		findPreference(Settings.PREF_VERSION_NAME).setSummary(BuildConfig.VERSION_NAME);
-		mPrefSkipMediaScan = (SwitchPreference) findPreference(Settings.PREF_SKIP_MEDIA_SCAN);
-		mPrefSkipMediaScan.setOnPreferenceChangeListener(this);
-
-		Preference prefRecordingFolder = findPreference(Settings.PREF_RECORDING_FOLDER);
-		prefRecordingFolder.setOnPreferenceClickListener(this);
-		prefRecordingFolder.setSummary(Utility.getRecordingFolder().toString());
-
-		if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
-			Preference prefSeparateFolder = findPreference(Settings.PREF_SEPARATE_FOLDER);
-			prefSeparateFolder.setEnabled(false);
-			prefSeparateFolder.setSummary(R.string.pref_summery_separate_folder_disabled);
-		}
 	}
 
 	@Override
@@ -47,30 +31,5 @@ public class SettingsActivity extends PreferenceActivity implements
 		default:
 			break;
 		}
-	}
-
-	@Override
-	public boolean onPreferenceChange(Preference preference, Object newValue) {
-		String key = preference.getKey();
-		switch (key) {
-		case Settings.PREF_SKIP_MEDIA_SCAN:
-			if (Utility.checkStoragePermission(this, REQUEST_STORAGE_PERMISSION)) {
-				Utility.setRecordingSkipMediaScan((Boolean) newValue);
-			}
-			break;
-		default:
-			return false;
-		}
-		return true;
-	}
-
-	@Override
-	public boolean onPreferenceClick(Preference preference) {
-		switch (preference.getKey()) {
-		case Settings.PREF_RECORDING_FOLDER:
-			Utility.openRecordingFolder(this);
-			break;
-		}
-		return false;
 	}
 }

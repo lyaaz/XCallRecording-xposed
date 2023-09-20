@@ -29,13 +29,6 @@
 			android:defaultValue="false"
 			/>
 		<SwitchPreference
-			android:title="@string/pref_title_aac_format"
-			android:summary="@string/pref_summery_aac_format"
-			android:key="aac_format"
-			android:dependency="@string/pref_record_enabled"
-			android:defaultValue="false"
-			/>
-		<SwitchPreference
 			android:title="@string/pref_title_record_incoming"
 			android:summary="@string/pref_summery_record_incoming"
 			android:key="record_incoming"
@@ -54,7 +47,7 @@
 			android:summary="@string/pref_summery_record_delay"
 			android:key="record_delay2"
 			android:dependency="@string/pref_record_enabled"
-			android:numeric="integer"
+			android:inputType="number"
 			android:maxLength="4"
 			android:defaultValue="500"
 			/>
@@ -62,30 +55,12 @@
 	<PreferenceCategory
 		android:title="@string/pref_title_recording_file"
 		>
-		<Preference
-			android:title="@string/pref_title_recording_folder"
-			android:key="recording_folder"
-			/>
 		<SwitchPreference
 			android:title="@string/pref_title_prepend_contact_name"
 			android:summary="@string/pref_summery_prepend_contact_name"
 			android:key="prepend_contact_name"
 			android:dependency="@string/pref_record_enabled"
-			android:defaultValue="false"
-			/>
-		<SwitchPreference
-			android:title="@string/pref_title_separate_folder"
-			android:summary="@string/pref_summery_separate_folder"
-			android:key="separate_folder"
-			android:dependency="@string/pref_record_enabled"
-			android:defaultValue="false"
-			/>
-		<SwitchPreference
-			android:title="@string/pref_title_skip_media_scan"
-			android:summary="@string/pref_summery_skip_media_scan"
-			android:key="skip_media_scan"
-			android:dependency="@string/pref_record_enabled"
-			android:defaultValue="false"
+			android:defaultValue="true"
 			/>
 	</PreferenceCategory>
 	<PreferenceCategory

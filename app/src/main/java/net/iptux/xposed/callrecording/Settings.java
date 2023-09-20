@@ -7,14 +7,10 @@ import de.robv.android.xposed.XSharedPreferences;
 class Settings {
 	private static final String PREF_RECORD_ENABLE = "record_enabled";
 	private static final String PREF_FORCE_AUDIO_SOURCE = "force_audio_source";
-	private static final String PREF_AAC_FORMAT = "aac_format";
 	private static final String PREF_RECORD_INCOMING = "record_incoming";
 	private static final String PREF_RECORD_OUTGOING = "record_outgoing";
 	private static final String PREF_RECORD_DELAY2 = "record_delay2";
 	private static final String PREF_PREPEND_CONTACT_NAME = "prepend_contact_name";
-	static final String PREF_SEPARATE_FOLDER = "separate_folder";
-	static final String PREF_SKIP_MEDIA_SCAN = "skip_media_scan";
-	static final String PREF_RECORDING_FOLDER = "recording_folder";
 	static final String PREF_VERSION_NAME = "version_name";
 
 	private static class SingletonHelper {
@@ -42,10 +38,6 @@ class Settings {
 		return prefs.getBoolean(PREF_FORCE_AUDIO_SOURCE, false);
 	}
 
-	boolean isAACFormat() {
-		return prefs.getBoolean(PREF_AAC_FORMAT, true);
-	}
-
 	boolean isRecordIncoming() {
 		return prefs.getBoolean(PREF_RECORD_INCOMING, true);
 	}
@@ -65,10 +57,5 @@ class Settings {
 
 	boolean isPrependContactName() {
 		return prefs.getBoolean(PREF_PREPEND_CONTACT_NAME, true);
-	}
-
-	boolean isSeparateFolder() {
-		return Build.VERSION.SDK_INT <= Build.VERSION_CODES.P
-			&& prefs.getBoolean(PREF_SEPARATE_FOLDER, false);
 	}
 }
