@@ -6,7 +6,6 @@ import de.robv.android.xposed.XSharedPreferences;
 
 class Settings {
 	private static final String PREF_RECORD_ENABLE = "record_enabled";
-	private static final String PREF_FORCE_AUDIO_SOURCE = "force_audio_source";
 	private static final String PREF_RECORD_INCOMING = "record_incoming";
 	private static final String PREF_RECORD_OUTGOING = "record_outgoing";
 	private static final String PREF_RECORD_DELAY2 = "record_delay2";
@@ -34,10 +33,6 @@ class Settings {
 		return prefs.getBoolean(PREF_RECORD_ENABLE, true);
 	}
 
-	boolean forceAudioSource() {
-		return prefs.getBoolean(PREF_FORCE_AUDIO_SOURCE, false);
-	}
-
 	boolean isRecordIncoming() {
 		return prefs.getBoolean(PREF_RECORD_INCOMING, true);
 	}
@@ -47,9 +42,9 @@ class Settings {
 	}
 
 	int getRecordDelay() {
-		int delay = 500;
+		int delay = 100;
 		try {
-			delay = Integer.parseInt(prefs.getString(PREF_RECORD_DELAY2, "500"));
+			delay = Integer.parseInt(prefs.getString(PREF_RECORD_DELAY2, "100"));
 		} catch (NumberFormatException ignored) {
 		}
 		return delay;

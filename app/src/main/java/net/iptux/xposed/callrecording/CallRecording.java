@@ -64,13 +64,6 @@ public class CallRecording implements IXposedHookLoadPackage {
 			// ignored
 		}
 
-		try {
-			// getAudioSource() may get inlined in the final dex
-			findAndHookMethod(callRecordingServiceName, lpparam.classLoader, "getAudioSource", new GetAudioSourceHook());
-		} catch (Throwable e) {
-			// ignored
-		}
-
 		findAndHookMethod(callRecordingServiceName, lpparam.classLoader, "generateFilename", String.class, new GenerateFilenameHook());
 
 		final Class<?> CallButtonPresenter = XposedHelpers.findClass(CALL_BUTTON_PRESENTER, lpparam.classLoader);
