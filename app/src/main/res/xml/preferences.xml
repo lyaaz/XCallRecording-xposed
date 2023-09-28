@@ -42,7 +42,7 @@
 			android:dependency="@string/pref_record_enabled"
 			android:inputType="number"
 			android:maxLength="4"
-			android:defaultValue="100"
+			android:defaultValue="200"
 			/>
 	</PreferenceCategory>
 	<PreferenceCategory

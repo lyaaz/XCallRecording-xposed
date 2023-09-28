@@ -1,6 +1,6 @@
 package net.iptux.xposed.callrecording;
 
-import android.os.Build;
+import net.iptux.xposed.callrecording.BuildConfig;
 
 import de.robv.android.xposed.XSharedPreferences;
 
@@ -42,9 +42,9 @@ class Settings {
 	}
 
 	int getRecordDelay() {
-		int delay = 100;
+		int delay = 200;
 		try {
-			delay = Integer.parseInt(prefs.getString(PREF_RECORD_DELAY2, "100"));
+			delay = Integer.parseInt(prefs.getString(PREF_RECORD_DELAY2, "200"));
 		} catch (NumberFormatException ignored) {
 		}
 		return delay;
