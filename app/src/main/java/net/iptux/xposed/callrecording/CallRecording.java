@@ -19,7 +19,7 @@ public class CallRecording implements IXposedHookLoadPackage {
 
 	private static final String CALL_RECORDING_LISTENER_LOS15 = "com.android.incallui.call.CallRecorder";
 	private static final String CALL_RECORDING_SERVICE_LOS15 = "com.android.dialer.callrecord.impl.CallRecorderService";
-	private static final String CALL_BUTTON_FRAGMENT_LOS15 = "com.android.incallui.incall.impl.ButtonController.CallRecordButtonController";
+	private static final String CALL_BUTTON_FRAGMENT_LOS15 = "com.android.incallui.incall.impl.ButtonController$CallRecordButtonController";
 
 	@Override
 	public void handleLoadPackage(LoadPackageParam lpparam) throws Throwable {
